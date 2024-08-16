@@ -1,0 +1,506 @@
+<!DOCTYPE html><html><head><base href="https://brud-rpg.com%20portrety%20si%C4%99%20nie%20wy%C5%9Bwietlaj%C4%85%20w%20przegl%C4%85darce%20napraw%20to">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brud RPG - Surrealistyczna Przygoda z Kontekstem</title>
+<style>
+  body {
+    font-family: 'Comic Sans MS', cursive;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="50" font-size="20" fill="rgba(0,0,0,0.1)">BRUD</text></svg>');
+  }
+  #game-container {
+    background-color: #fff;
+    border: 5px solid #8B4513;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  #user-input {
+    width: 100%;
+    padding: 10px;
+    background-color: #FFF8DC;
+    color: #333;
+    border: 2px solid #8B4513;
+    border-radius: 5px;
+  }
+  #submit-action {
+    background-color: #8B4513;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  #submit-action:hover {
+    background-color: #A0522D;
+  }
+  .character {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .character img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #8B4513;
+    object-fit: cover;
+  }
+  .character:hover img {
+    border-color: #A0522D;
+  }
+</style>
+</head>
+<body>
+<h1 style="font-family: 'Papyrus', fantasy; text-shadow: 2px 2px 4px #8B4513;">Brud-rpg. Przygotuj się do szalonej gry bez kontekstu</h1>
+<div id="character-selection">
+  <style>
+    #character-selection {
+      font-family: 'Trebuchet MS', sans-serif;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .character {
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .character:hover {
+      transform: scale(1.05);
+    }
+    .character img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid #8B4513;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .character:hover img {
+      border-color: #A0522D;
+    }
+    .character p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #4B0082;
+    }
+  </style>
+  <div class="character">
+    <svg width="150" height="150" viewBox="0 0 150 150">
+      <defs>
+        <linearGradient id="dzikGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:#D2691E;stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <circle cx="75" cy="75" r="70" fill="url(#dzikGrad)"></circle>
+      <path d="M50 60 Q75 30 100 60" stroke="#4B0082" stroke-width="5" fill="none"></path>
+      <circle cx="65" cy="70" r="10" fill="white"></circle>
+      <circle cx="65" cy="70" r="5" fill="black"></circle>
+      <circle cx="85" cy="70" r="10" fill="white"></circle>
+      <circle cx="85" cy="70" r="5" fill="black"></circle>
+      <path d="M60 90 Q75 100 90 90" stroke="#4B0082" stroke-width="3" fill="none"></path>
+      <path d="M30 50 Q40 30 60 40" stroke="#8B4513" stroke-width="8" fill="none"></path>
+      <path d="M120 50 Q110 30 90 40" stroke="#8B4513" stroke-width="8" fill="none"></path>
+      <path d="M75 110 L85 130 L75 125 L65 130 Z" fill="#4B0082"></path>
+    </svg>
+    <p>Dzik Mag Błota</p>
+  </div>
+  <div class="character">
+    <svg width="150" height="150" viewBox="0 0 150 150">
+      <defs>
+        <linearGradient id="oposGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#696969;stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:#A9A9A9;stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <circle cx="75" cy="75" r="70" fill="url(#oposGrad)"></circle>
+      <path d="M40 70 Q75 100 110 70" stroke="black" stroke-width="3" fill="#D3D3D3"></path>
+      <circle cx="60" cy="60" r="12" fill="white"></circle>
+      <circle cx="60" cy="60" r="6" fill="black"></circle>
+      <circle cx="90" cy="60" r="12" fill="white"></circle>
+      <circle cx="90" cy="60" r="6" fill="black"></circle>
+      <path d="M70 80 Q75 85 80 80" stroke="black" stroke-width="2" fill="none"></path>
+      <path d="M30 30 Q75 10 120 30" stroke="#A9A9A9" stroke-width="10" fill="none"></path>
+      <rect x="55" y="40" width="40" height="20" fill="black"></rect>
+    </svg>
+    <p>Opos Złodziej Brudu</p>
+  </div>
+  <div class="character">
+    <svg width="150" height="150" viewBox="0 0 150 150">
+      <defs>
+        <linearGradient id="dinoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#228B22;stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:#32CD32;stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <circle cx="75" cy="75" r="70" fill="url(#dinoGrad)"></circle>
+      <path d="M30 80 Q75 120 120 80" stroke="#006400" stroke-width="5" fill="#98FB98"></path>
+      <circle cx="60" cy="50" r="15" fill="white"></circle>
+      <circle cx="60" cy="50" r="7" fill="black"></circle>
+      <path d="M80 40 L100 30 L95 50 Z" fill="#006400"></path>
+      <rect x="45" y="90" width="60" height="40" fill="white" stroke="#006400" stroke-width="3"></rect>
+      <line x1="75" y1="90" x2="75" y2="130" stroke="#006400" stroke-width="3"></line>
+    </svg>
+    <p>Dinozaur w Majtkach</p>
+  </div>
+  <div class="character">
+    <svg width="150" height="150" viewBox="0 0 150 150">
+      <defs>
+        <radialGradient id="hadesGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" style="stop-color:#8B0000;stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:#4B0082;stop-opacity:1"></stop>
+        </radialGradient>
+      </defs>
+      <circle cx="75" cy="75" r="70" fill="url(#hadesGrad)"></circle>
+      <path d="M30 70 Q75 100 120 70" stroke="#FF4500" stroke-width="3" fill="none"></path>
+      <circle cx="60" cy="60" r="15" fill="#FF0000"></circle>
+      <circle cx="60" cy="60" r="7" fill="#8B0000"></circle>
+      <circle cx="90" cy="60" r="15" fill="#FF0000"></circle>
+      <circle cx="90" cy="60" r="7" fill="#8B0000"></circle>
+      <path d="M50 40 Q75 20 100 40" stroke="#A0522D" stroke-width="5" fill="none"></path>
+      <path d="M60 90 Q75 100 90 90" stroke="#8B4513" stroke-width="3" fill="none"></path>
+      <path d="M20 20 Q75 0 130 20" stroke="#4B0082" stroke-width="10" fill="none"></path>
+    </svg>
+    <p>Umorusany Hades</p>
+  </div>
+</div>
+<div id="game-container">
+  <style>
+    #game-container {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f8ff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      line-height: 1.6;
+    }
+    .question {
+      margin-bottom: 10px;
+      color: #4b0082;
+      font-style: italic;
+    }
+    .silly-response {
+      color: #ff6347;
+      font-weight: bold;
+      font-style: italic;
+    }
+  </style>
+  <h2>Witaj w świecie Brud RPG!</h2>
+  <p>Wybierz swoją postać, aby rozpocząć surrealistyczną przygodę.</p>
+  <script>
+    // Dodajemy 100 losowych odpowiedzi Mistrza Gry
+    const randomResponses = [
+      "Nagle, ziemia pod tobą zamienia się w galaretę!",
+      "Z nieba spadają kolorowe balony wypełnione... zapachem!",
+      "Twoje buty zaczynają śpiewać operę!",
+      "Drzewa wokół ciebie zaczynają tańczyć breakdance!",
+      "Chmury formują się w kształt gigantycznego hamburgera!",
+      "Twój cień zaczyna opowiadać dowcipy!",
+      "Kamienie na drodze zamieniają się w kostki sera!",
+      "Wiatr przynosi zapach świeżo upieczonej pizzy... z Marsa!",
+      "Twoje włosy zmieniają kolor w zależności od twoich myśli!",
+      "Kałuże na ulicy zamieniają się w miniaturowe portale do innych wymiarów!",
+      "Ptaki latają do tyłu!",
+      "Twoje słowa unoszą się w powietrzu jako kolorowe bańki!",
+      "Grawitacja działa tylko na co trzeci przedmiot!",
+      "Wszystkie zegary w okolicy zaczynają iść wstecz!",
+      "Książki w pobliskiej bibliotece zaczynają głośno czytać same siebie!",
+      "Twój brzuch zaczyna mówić w obcym języku!",
+      "Kwiaty wyrastają spod twoich stóp przy każdym kroku!",
+      "Cienie wszystkich przedmiotów odłączają się i zaczynają tańczyć!",
+      "Niebo zmienia kolor co 5 sekund!",
+      "Twoje myśli stają się widoczne jako małe chmurki nad twoją głową!",
+      "Wszystkie przedmioty w zasięgu wzroku zaczynają lewitować!",
+      "Twój głos zamienia się w śpiew operowy!",
+      "Drzwi do wszystkich budynków zamieniają się w portale do losowych miejsc!",
+      "Twoje ręce zamieniają się w gumowe rękawiczki!",
+      "Wszyscy dookoła zaczynają mówić wspak!",
+      "Czas płynie szybciej dla ciebie, ale wolniej dla wszystkich innych!",
+      "Twoja skóra zaczyna świecić w ciemności!",
+      "Każdy przedmiot, którego dotkniesz, zamienia się w coś jadalnego!",
+      "Twoje kroki zostawiają za sobą ślady z konfetti!",
+      "Deszcz pada... do góry!",
+      "Twój nos zaczyna wykrywać kłamstwa jak detektor!",
+      "Wszystkie rośliny zaczynają rosnąć w przyspieszonym tempie!",
+      "Twój cień odrywa się od ciebie i zaczyna żyć własnym życiem!",
+      "Każde twoje kichnięcie powoduje małe trzęsienie ziemi!",
+      "Twoje oczy zaczynają działać jak kamery, nagrywając wszystko, co widzisz!",
+      "Wszystkie zwierzęta w okolicy zaczynają mówić ludzkim głosem!",
+      "Twoje ubrania zmieniają wzór co 10 sekund!",
+      "Każdy twój śmiech sprawia, że w pobliżu wyrastają kolorowe grzyby!",
+      "Twoje stopy przestają dotykać ziemi i zaczynasz lewitować!",
+      "Wszystkie liczby, które widzisz, zamieniają się w hieroglify!",
+      "Twój żołądek zaczyna wydawać dźwięki jak orkiestra symfoniczna!",
+      "Chmury formują się w kształty twoich myśli!",
+      "Twoje palce zamieniają się w mini latarki!",
+      "Każde twoje mrugnięcie powoduje, że wszyscy wokół zasypiają na sekundę!",
+      "Twoje włosy zaczynają rosnąć w tempie 1 cm na minutę!",
+      "Wszystkie lustra pokazują twoje alternatywne wersje z równoległych wszechświatów!",
+      "Każde twoje słowo materializuje się jako balonik z helem!",
+      "Twoje uszy zaczynają odbierać myśli pobliskich roślin!",
+      "Ziemia pod twoimi stopami zamienia się w trampolinę!",
+      "Twój pępek staje się portalem do innego wymiaru!",
+      "Każdy twój oddech zamienia powietrze wokół ciebie w kolorową mgłę!",
+      "Twoje brwi zaczynają świecić jak neony!",
+      "Każdy twój krok powoduje, że trawa zmienia kolor!",
+      "Twoje łokcie zaczynają emitować zapach twojego ulubionego jedzenia!",
+      "Cienie wszystkich przedmiotów zamieniają się w ich przeciwieństwa!",
+      "Twoje włosy zaczynają reagować na muzykę jak equalizer!",
+      "Każde twoje kliknięcie palcami powoduje, że coś w pobliżu zamienia się w czekoladę!",
+      "Twój język zaczyna świecić w ciemności różnymi kolorami!",
+      "Twoje rzęsy zamieniają się w miniaturowe anteny satelitarne!",
+      "Każdy twój skok powoduje, że grawitacja na chwilę przestaje działać dla wszystkich!",
+      "Twoje zęby zaczynają emitować Wi-Fi!",
+      "Każde twoje ziewnięcie powoduje, że wszyscy wokół zaczynają tańczyć!",
+      "Twoje paznokcie zmieniają kolor w zależności od twojego nastroju!",
+      "Każde twoje kichnięcie sprawia, że w pobliżu wyrasta drzewo!",
+      "Twoje łzy zamieniają się w małe rybki, gdy dotykają ziemi!",
+      "Każdy twój szept jest słyszalny w promieniu kilometra!",
+      "Twoje stopy zostawiają ślady z kwiatów!",
+      "Każde twoje mrugnięcie powoduje, że czas cofa się o sekundę!",
+      "Twój puls jest widoczny jako pulsujące światło na twojej skórze!",
+      "Każdy twój uśmiech sprawia, że niebo rozjaśnia się!",
+      "Twoje łzy zamieniają się w diamenty, gdy dotykają ziemi!",
+      "Każde twoje skinienie głową powoduje, że pobliskie przedmioty zmieniają kolor!",
+      "Twój cień zaczyna tańczyć niezależnie od twoich ruchów!",
+      "Każde twoje dotknięcie ziemi powoduje, że wyrasta z niej mały wulkan z lodami!",
+      "Twoje oczy zaczynają emitować hologramy twoich myśli!",
+      "Każdy twój krok powoduje, że pobliskie rośliny rosną w przyspieszonym tempie!",
+      "Twój głos zamienia się w muzykę orkiestry symfonicznej!",
+      "Każde twoje westchnienie powoduje, że w pobliżu pojawia się tęcza!",
+      "Twoje włosy zaczynają poruszać się jak macki ośmiornicy!",
+      "Każde twoje chrząknięcie sprawia, że pobliskie przedmioty zaczynają lewitować!",
+      "Twój oddech zamienia się w pachnące bańki mydlane!",
+      "Każde twoje pstryknięcie palcami powoduje, że czas zatrzymuje się na sekundę!",
+      "Twoje brwi zaczynają migotać jak lampki choinkowe!",
+      "Każdy twój śmiech sprawia, że z nieba spadają cukierki!",
+      "Twoje uszy zaczynają się poruszać w rytm bicia twojego serca!",
+      "Każde twoje mrugnięcie powoduje, że wszyscy wokół zmieniają kolor włosów!",
+      "Twój nos zaczyna emitować zapach twojego ostatniego posiłku!",
+      "Każdy twój krok powoduje, że ziemia pod tobą zamienia się w różne tekstury!",
+      "Twoje palce zamieniają się w mini fontanny!",
+      "Każde twoje kiwnięcie głową sprawia, że pobliskie przedmioty zaczynają śpiewać!",
+      "Twój pępek staje się kompasem wskazującym kierunek do najbliższej przygody!",
+      "Każde twoje kaszlnięcie powoduje, że w pobliżu pojawiają się fajerwerki!",
+      "Twoje kolana zaczynają świecić w rytm twojego pulsu!",
+      "Każdy twój skok powoduje, że wszyscy wokół zaczynają unosić się w powietrzu!",
+      "Twoje łokcie zaczynają emitować dźwięki dzwonków!",
+      "Każde twoje mruczenie sprawia, że pobliskie zwierzęta zaczynają tańczyć!",
+      "Twoje rzęsy zamieniają się w miniaturowe wiatraczki!",
+      "Każde twoje kliknięcie językiem powoduje, że coś w pobliżu zamienia się w lód!",
+      "Twoje uszy zaczynają działać jak radary, wykrywając zbliżające się przygody!",
+      "Każdy twój dotyk sprawia, że przedmioty zaczynają się kurczyć lub rosnąć!"
+    ];
+
+    // Dodajemy nową funkcję do generowania odpowiedzi
+    function getRandomResponse() {
+      return randomResponses[Math.floor(Math.random() * randomResponses.length)];
+    }
+
+    // Modyfikujemy istniejącą funkcję generateResponse
+    function generateResponse(action) {
+      let response = getRandomResponse() + " ";
+
+      // Reszta logiki funkcji pozostaje bez zmian
+      if (gameContext.location.includes("kuchnia")) {
+        response += "W tej dziwacznej kuchni, ";
+      } else if (gameContext.location.includes("miasto")) {
+        response += "W mieście odwróconego deszczu, ";
+      } else if (gameContext.location.includes("pralka")) {
+        response += "Stojąc przed wielką pralką, ";
+      }
+
+      if (gameContext.items.includes("brudne skarpetki") && action.toLowerCase().includes("skarpetk")) {
+        response += "brudne skarpetki reagują na twoje działanie! ";
+      } else if (gameContext.items.includes("magiczna miotła") && action.toLowerCase().includes("miotł")) {
+        response += "magiczna miotła zaczyna świecić i wibrować. ";
+      }
+
+      if (gameContext.characters.includes("mówiące gąbki") && action.toLowerCase().includes("gąbk")) {
+        response += "Mówiące gąbki entuzjastycznie odpowiadają na twoje działania. ";
+      } else if (gameContext.characters.includes("mieszkańcy chodzący na rękach") && action.toLowerCase().includes("mieszkań")) {
+        response += "Mieszkańcy chodzący na rękach patrzą na ciebie z zaciekawieniem. ";
+      }
+
+      if (gameContext.lastAction && gameContext.lastAction.toLowerCase().includes("skacz")) {
+        response += "Twoje poprzednie skakanie wpłynęło na otoczenie - podłoga stała się bardziej sprężysta. ";
+      }
+
+      response += "Co robisz w tej nowej, dziwacznej sytuacji?";
+
+      gameContext.lastResponse = response;
+      return response;
+    }
+  </script>
+</div>
+<input type="text" id="user-input" placeholder="Co chrumkasz?">
+<button id="submit-action">Wykonaj akcję</button>
+
+<script>
+const gameContainer = document.getElementById('game-container');
+const userInput = document.getElementById('user-input');
+const submitAction = document.getElementById('submit-action');
+const characters = document.querySelectorAll('.character');
+
+let selectedCharacter = '';
+let gameContext = {
+  location: '',
+  items: [],
+  characters: [],
+  lastAction: '',
+  lastResponse: '',
+  actionCounter: 0
+};
+
+characters.forEach(char => {
+  char.addEventListener('click', () => {
+    selectedCharacter = char.querySelector('p').textContent;
+    startGame();
+  });
+});
+
+const scenarios = [
+  {
+    text: "Budzisz się w gigantycznej kuchni. Zamiast jedzenia, wszędzie leżą brudne skarpetki. Co robisz?",
+    location: "Gigantyczna kuchnia",
+    items: ["brudne skarpetki"],
+    characters: []
+  },
+  {
+    text: "Trafiasz do miasta, gdzie deszcz pada... do góry. Mieszkańcy chodzą na rękach. Jak reagujesz?",
+    location: "Miasto odwróconego deszczu",
+    items: [],
+    characters: ["mieszkańcy chodzący na rękach"]
+  },
+  {
+    text: "Stoisz przed wielką pralką. Z jej wnętrza dochodzą dziwne odgłosy. Co zrobisz?",
+    location: "Przed wielką pralką",
+    items: ["wielka pralka"],
+    characters: []
+  },
+  {
+    text: "Znajdujesz magiczną miotłę, która zmienia każdy brud w coś jadalnego. Jak ją wykorzystasz?",
+    location: "Miejsce z magiczną miotłą",
+    items: ["magiczna miotła"],
+    characters: []
+  },
+  {
+    text: "Spotykasz grupę mówiących gąbek, które narzekają na brak pracy. Jak im pomożesz?",
+    location: "Miejsce spotkania z gąbkami",
+    items: [],
+    characters: ["mówiące gąbki"]
+  }
+];
+
+function addToStory(text, className = '') {
+  gameContainer.innerHTML += `<p class="${className}">${text}</p>`;
+  gameContainer.scrollTop = gameContainer.scrollHeight;
+}
+
+function getRandomScenario() {
+  const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+  gameContext.location = scenario.location;
+  gameContext.items = scenario.items;
+  gameContext.characters = scenario.characters;
+  return scenario.text;
+}
+
+function generateResponse(action) {
+  let response = "";
+  
+  // Odwołanie do kontekstu lokacji
+  if (gameContext.location.includes("kuchnia")) {
+    response += "W tej dziwacznej kuchni, ";
+  } else if (gameContext.location.includes("miasto")) {
+    response += "W mieście odwróconego deszczu, ";
+  } else if (gameContext.location.includes("pralka")) {
+    response += "Stojąc przed wielką pralką, ";
+  }
+
+  // Odwołanie do przedmiotów
+  if (gameContext.items.includes("brudne skarpetki") && action.toLowerCase().includes("skarpetk")) {
+    response += "brudne skarpetki reagują na twoje działanie! ";
+  } else if (gameContext.items.includes("magiczna miotła") && action.toLowerCase().includes("miotł")) {
+    response += "magiczna miotła zaczyna świecić i wibrować. ";
+  }
+
+  // Odwołanie do postaci
+  if (gameContext.characters.includes("mówiące gąbki") && action.toLowerCase().includes("gąbk")) {
+    response += "Mówiące gąbki entuzjastycznie odpowiadają na twoje działania. ";
+  } else if (gameContext.characters.includes("mieszkańcy chodzący na rękach") && action.toLowerCase().includes("mieszkań")) {
+    response += "Mieszkańcy chodzący na rękach patrzą na ciebie z zaciekawieniem. ";
+  }
+
+  // Odwołanie do ostatniej akcji gracza
+  if (gameContext.lastAction && gameContext.lastAction.toLowerCase().includes("skacz")) {
+    response += "Twoje poprzednie skakanie wpłynęło na otoczenie - podłoga stała się bardziej sprężysta. ";
+  }
+
+  // Dodanie losowego elementu surrealistycznego
+  const surrealistyczneDodatki = [
+    "Nagle, wszystkie kolory zaczynają się mieszać jak w kalejdoskopie. ",
+    "Grawitacja na chwilę przestaje działać, a wszystko zaczyna unosić się w powietrzu. ",
+    "Ściany zaczynają szeptać tajemnicze zagadki. ",
+    "Twój cień odrywa się od ciebie i zaczyna tańczyć sambę. ",
+    "Z sufitu zaczyna padać konfetti zrobione z miniaturowych kanapek. "
+  ];
+  response += surrealistyczneDodatki[Math.floor(Math.random() * surrealistyczneDodatki.length)];
+
+  // Pytanie otwarte, zachęcające do dalszej interakcji
+  response += "Co robisz w tej nowej, dziwacznej sytuacji?";
+
+  gameContext.lastResponse = response;
+  return response;
+}
+
+function startGame() {
+  gameContainer.innerHTML = '';
+  addToStory(`Witaj, ${selectedCharacter}! Twoja surrealistyczna przygoda w świecie Brud RPG zaczyna się teraz!`);
+  addToStory(getRandomScenario());
+}
+
+function handleUserAction() {
+  const action = userInput.value;
+  if (action) {
+    addToStory(`${selectedCharacter}: ${action}`);
+    gameContext.lastAction = action;
+    userInput.value = '';
+
+    setTimeout(() => {
+      gameContext.actionCounter++;
+      
+      if (gameContext.actionCounter % 3 === 0) {
+        addToStory("Mistrz Gry: Ale to było głupie!", "silly-response");
+        setTimeout(() => {
+          const newScenario = getRandomScenario();
+          addToStory(`Mistrz Gry: ${newScenario}`);
+        }, 1000);
+      } else {
+        const aiResponse = generateResponse(action);
+        addToStory(`Mistrz Gry: ${aiResponse}`);
+      }
+    }, 1000);
+  }
+}
+
+submitAction.addEventListener('click', handleUserAction);
+userInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    handleUserAction();
+  }
+});
+</script>
+</body></html>
